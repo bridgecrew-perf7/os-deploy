@@ -1,0 +1,11 @@
+directory: ~/Музыка
+library: ~/.beetsdb
+plugins: fetchart lyrics lastgenre embedart zero
+fetchart:
+    maxwidth: 300
+embedart:
+    remove_art_file: yes
+    maxwidth: 300
+zero:
+    fields: comments
+    update_database: true

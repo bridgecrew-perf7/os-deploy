@@ -1,0 +1,11 @@
+alias apti="sudo apt install"
+alias aptr="sudo apt purge"
+alias aptu="sudo apt update && sudo apt upgrade"
+alias debi="sudo dpkg -i"
+
+alias build="meson build --prefix=/usr && cd build && ninja && sudo ninja install"
+alias ed="sudo nano"
+alias ged="sudo io.elementary.code"
+
+alias cd..="cd .."
+alias ..="cd .."
