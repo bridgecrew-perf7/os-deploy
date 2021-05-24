@@ -44,4 +44,7 @@ sudo dpkg -i /tmp/discord.deb
 sudo apt install -y zsh
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
+cp -fv ./.zshrc ~/
+cp -fv ./prototerm.zsh-theme ~/.oh-my-zsh/themes/
+
 sudo bash ./build-kernel.sh
