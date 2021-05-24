@@ -15,7 +15,7 @@ sudo cp -fv ./monitors.xml /var/lib/lightdm/.config/
 cp -fv ./beets.yaml ~/.config/beets/config.yaml
 cp -fv ./.aliasrc ~/
 
-sudo apt install -y mc p7zip git wget software-properties-common apt-transport-https
+sudo apt install -y mc pv p7zip git wget software-properties-common apt-transport-https
 
 sudo add-apt-repository -y ppa:phoerious/keepassxc
 sudo add-apt-repository -y ppa:atareao/telegram
@@ -43,3 +43,5 @@ sudo dpkg -i /tmp/discord.deb
 
 sudo apt install -y zsh
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+sudo bash ./build-kernel.sh
