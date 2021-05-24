@@ -3,36 +3,19 @@
 printf 'Adding user to the sudoers list... \n'
 echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dont-prompt-$USER-for-sudo-password
 
-gpu=$(lspci | grep -i '.* vga .* nvidia .*')
-shopt -s nocasematch
-
-if [[ $gpu == *' nvidia '* ]]; then
-  printf 'Nvidia GPU is present:  %s\n' "$gpu"
-  NVIDIA_GA=1
-else
-  printf 'Nvidia GPU is not present: %s\n' "$gpu"
-  NVIDIA_GA=0
-fi
-
-if [[ $NVIDIA_GA == 1 ]]; then
-    printf 'Installing Nvidia GPU Driver...\n'
-    sudo apt install -y linux-headers-$(uname -r)
-    sudo apt install -y nvidia-384
-fi
+sudo apt install -y linux-headers-$(uname -r)
+sudo apt install -y nvidia-384
 
 printf 'Setting up configuration files...\n'
 
-if [[ $NVIDIA_GA == 1 ]]; then
-    sudo cp -fv ./xorg.conf /etc/X11/
-    cp -fv ./monitors.xml ~/.config/
-    sudo cp -fv ./monitors.xml /var/lib/lightdm/.config/
-fi
+sudo cp -fv ./xorg.conf /etc/X11/
+cp -fv ./monitors.xml ~/.config/
+sudo cp -fv ./monitors.xml /var/lib/lightdm/.config/
 
 cp -fv ./beets.yaml ~/.config/beets/config.yaml
 cp -fv ./.aliasrc ~/
 
-sudo apt install -y zsh git wget software-properties-common apt-transport-https
-#sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+sudo apt install -y mc p7zip git wget software-properties-common apt-transport-https
 
 sudo add-apt-repository -y ppa:phoerious/keepassxc
 sudo add-apt-repository -y ppa:atareao/telegram
@@ -57,3 +40,6 @@ sudo dpkg -i /tmp/vk_5.2.3-1_amd64.deb
 sudo apt install -y libc++1 libc++1-10 libc++abi1-10
 wget -O /tmp/discord.deb "https://discord.com/api/download?platform=linux&format=deb"
 sudo dpkg -i /tmp/discord.deb
+
+sudo apt install -y zsh
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
