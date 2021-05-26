@@ -31,7 +31,7 @@ if [[ $(grep '\[Profile[^0]\]' ~/.mozilla/firefox/profiles.ini) ]]
 fi
 
 rm -rf ~/.mozilla/firefox/$PROFPATH/{*,.[^.]*}
-cp -fv ./firefox_prefs.js ~/.mozilla/firefox/$PROFPATH/prefs.js
+cp -fv ./firefox_prefs ~/.mozilla/firefox/$PROFPATH/prefs.js
 
 
 wget -O ~/.mozilla/firefox/$PROFPATH/extensions/ "https://addons.mozilla.org/firefox/downloads/file/3768975/ublock_origin-1.35.2-an+fx.xpi"
