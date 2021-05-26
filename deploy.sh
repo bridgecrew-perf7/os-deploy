@@ -23,6 +23,23 @@ sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt update
 sudo apt install -y keepassxc telegram qbittorrent firefox simple-scan qbittorrent
 
+killall firefox
+
+if [[ $(grep '\[Profile[^0]\]' ~/.mozilla/firefox/profiles.ini) ]]
+    then PROFPATH=$(grep -E '^\[Profile|^Path|^Default' profiles.ini | grep -1 '^Default=1' | grep '^Path' | cut -c6-)
+    else PROFPATH=$(grep 'Path=' ~/.mozilla/firefox/profiles.ini | sed 's/^Path=//')
+fi
+
+rm -rf ~/.mozilla/firefox/$PROFPATH/{*,.[^.]*}
+cp -fv ./firefox_prefs.js ~/.mozilla/firefox/$PROFPATH/prefs.js
+
+
+wget -O ~/.mozilla/firefox/$PROFPATH/extensions/ "https://addons.mozilla.org/firefox/downloads/file/3768975/ublock_origin-1.35.2-an+fx.xpi"
+wget -O ~/.mozilla/firefox/$PROFPATH/extensions/ "https://addons.mozilla.org/firefox/downloads/file/3760520/https_everywhere-2021.4.15-an+fx.xpi"
+wget -O ~/.mozilla/firefox/$PROFPATH/extensions/ "https://addons.mozilla.org/firefox/downloads/file/3719726/privacy_badger-2021.2.2-an+fx.xpi"
+wget -O ~/.mozilla/firefox/$PROFPATH/extensions/ "https://addons.mozilla.org/firefox/downloads/file/3748919/clearurls-1.21.0-an+fx.xpi"
+wget -O ~/.mozilla/firefox/$PROFPATH/extensions/ "https://addons.mozilla.org/firefox/downloads/file/3780797/sponsorblock_skip_sponsorships_on_youtube-2.0.16.2-an+fx.xpi"
+
 wget "https://ftp.hp.com/pub/softlib/software13/printers/SS/SL-C4010ND/uld_V1.00.39_01.17.tar.gz" -O /tmp/uld_V1.00.39_01.17.tar.gz
 tar -xvf /tmp/uld_V1.00.39_01.17.tar.gz -C /tmp/
 sudo bash /tmp/uld/install-printer.sh

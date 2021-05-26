@@ -1,7 +1,7 @@
-export ZSH="/home/protokeks/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
-ZSH_THEME="prototerm"
-plugins=(git alias-finder)
+ZSH_THEME="terminalparty"
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 . ~/.aliasrc
